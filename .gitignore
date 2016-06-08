@@ -1,0 +1,8 @@
+/target/
+.idea
+.setting
+.setting/
+.project
+.classpath
+.tern-project
+/.settings/

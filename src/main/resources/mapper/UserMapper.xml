@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper      
+    PUBLIC "-//mybatis.apache.org//DTD Mapper 3.0//EN"      
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.yunshan.testframe.dao.UserDao">
+
+	<!-- 定义ResultMap结果集 -->
+	<resultMap type="com.yunshan.testframe.beans.User" id="userMap">
+		<result column="id" property="id" />
+		<result column="name" property="name" />
+
+	</resultMap>
+
+	<!-- 主键查询用户 -->
+	<select id="select" parameterType="int"
+		resultType="com.yunshan.testframe.beans.User">
+		select * from users where id = #{id}
+	</select>
+	<!-- 主键查询用户 -->
+	<select id="selectList" resultType="com.yunshan.testframe.beans.User">
+		select * from users
+	</select>
+	<insert id="insert" parameterType="com.yunshan.testframe.beans.User"
+		useGeneratedKeys="true" keyProperty="id">
+		insert into users (name, age)
+		values (#{name,jdbcType=VARCHAR},
+		#{age,jdbcType=INTEGER}
+		)
+	</insert>
+
+
+</mapper>
