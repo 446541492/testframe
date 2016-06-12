@@ -130,7 +130,7 @@ public class PageInterceptor implements Interceptor {
         pageSql.append(" limit ");
         pageSql.append(page.getStartRow());
         pageSql.append(" , ");
-        pageSql.append(page.getEndRow());
+        pageSql.append(page.pageSize);
         return pageSql.toString();
     }
 
