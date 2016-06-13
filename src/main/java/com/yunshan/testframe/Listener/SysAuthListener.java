@@ -27,8 +27,14 @@ public class SysAuthListener implements
 	private static final Logger logger = LoggerFactory.getLogger(SysAuthListener.class);
 	@Autowired
 	AuthDao authDao;
+	/**
+	 * 权限URL列表，用来做请求过滤
+	 */
 	public  static List<String> authList = null;
-
+	/**
+	 * 权限KEY列表，用来做页面展示过滤
+	 */
+	public  static List<String> authKeyList = null;
 	@Override
 	public void onApplicationEvent(ContextRefreshedEvent arg0) {
 		authList = authDao.sysAuthList();
