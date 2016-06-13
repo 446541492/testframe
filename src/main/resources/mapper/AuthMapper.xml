@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper      
+    PUBLIC "-//mybatis.apache.org//DTD Mapper 3.0//EN"      
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.yunshan.testframe.dao.AuthDao">
+
+	<!-- 查系统权限列表 -->
+	<select id="sysAuthList" 
+		resultType="java.lang.String">
+		select url from auth_sysauth 
+	</select>
+	<!-- 根据用户ID查用户权限列表 -->
+	<select id="userAuthList"  parameterType="java.lang.Integer"   resultType="java.lang.String">
+		select url from auth_sysauth where id in (select authid from auth_user_auid where userid=#{userid})
+	</select>
+</mapper>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<taglib xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
+	version="2.0">
+
+	<description>yunshan permission taglib</description><!-- 描述 -->
+	<display-name>permission taglib</display-name>
+	<tlib-version>1.0</tlib-version><!-- 版号 -->
+	<short-name>yunshan</short-name> <!-- 简单名称 -->
+	<uri>http://yunshan.com/authority</uri><!--  引用路径 -->
+	<tag>
+		<description>权限校验标签，有权限就显示标签体的内容，否则不显示</description>
+		<name>permission</name> <!-- 标签名 -->
+		<tag-class>com.yunshan.testframe.tag.AuthFilterTag</tag-class> <!-- 标签类 -->
+		<body-content>JSP</body-content>
+		<attribute>
+			<description></description>
+			<name>requestPath</name> <!-- 属性名 -->
+			<required>true</required> <!-- 标签的属性是否是必须的 -->
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+	</tag>
+</taglib>

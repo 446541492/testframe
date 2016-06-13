@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.yunshan.testframe.base.BaseController;
 import com.yunshan.testframe.beans.User;
@@ -32,14 +33,14 @@ public class UserController extends BaseController {
 		request.setAttribute("page", page);
 		return "index";
 	}
-
+	@ResponseBody  
 	@RequestMapping("test")
-	public String test() {
+	public User test() {
 		User u = new User();
 		u.setAge(11);
 		u.setName("123");
 		userService.insert(u);
-		return "index";
+		return u;
 	}
 
 

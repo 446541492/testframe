@@ -1,19 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-	<beans xmlns="http://www.springframework.org/schema/beans"
+<beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:mvc="http://www.springframework.org/schema/mvc"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	 xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
 	xsi:schemaLocation="
        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
        http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
-	<!-- 启用注解，并定义组件查找规则 ，mvc层只负责扫描@Controller -->
+	<!-- 启用注解，并定义组件查找规则 ，排除service层-->
 	<context:component-scan base-package="com.yunshan.testframe"
-		use-default-filters="false">
-		<context:include-filter type="annotation"
-			expression="org.springframework.stereotype.Controller" />
+		>
+		<context:exclude-filter type ="annotation" expression= "org.springframework.stereotype.Service" />
 	</context:component-scan>
 
 	<!-- 定义注解驱动Controller方法处理适配器 ,注：该适配器必须声明在<mvc:annotation-driven />之前，否则不能正常处理参数类型的转换 -->
@@ -24,19 +22,32 @@
 		class="org.springframework.web.servlet.handler.SimpleServletHandlerAdapter" />
 
 	<!-- 定义文件上传处理器 -->
-	<bean id="multipartResolver"		class="org.springframework.web.multipart.commons.CommonsMultipartResolver"	p:defaultEncoding="UTF-8" />
+	<bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver"
+		p:defaultEncoding="UTF-8" />
 
 	<!-- 会自动注册RequestMappingHandlerMapping与RequestMappingHandlerAdapter 两个bean,是spring 
 		MVC为@Controllers分发请求所必须的。 并提供了：数据绑定支持，@NumberFormatannotation支持，@DateTimeFormat支持，@Valid支持，读写XML的支持（JAXB），读写JSON的支持（Jackson） -->
 	<mvc:annotation-driven />
-
-
+<!-- 拦截器 -->
+<mvc:interceptors>  
+    <!-- 使用bean定义一个Interceptor，直接定义在mvc:interceptors根下面的Interceptor将拦截所有的请求 -->  
+    <mvc:interceptor>  
+        <mvc:mapping path="/*"/>  
+        <!-- 定义在mvc:interceptor下面的表示是对特定的请求才进行拦截的 -->  
+        <bean class="com.yunshan.testframe.interceptor.AuthInterceptor">
+        	<property name="excludedRequests" value="/index" />
+        </bean>  
+    </mvc:interceptor>  
+</mvc:interceptors>  
 
 	<!-- start视图配置 -->
-	<bean id="defaultViewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
-        <property name="contentType" value="text/html"/>
-        <property name="suffix" value=".jsp"/>
+	<bean id="defaultViewResolver"
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="viewClass"
+			value="org.springframework.web.servlet.view.JstlView" />
+		<property name="contentType" value="text/html" />
+		<property name="suffix" value=".jsp" />
 	</bean>
 	<!-- end视图配置 -->
 
