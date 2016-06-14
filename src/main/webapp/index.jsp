@@ -23,5 +23,18 @@
     </c:forEach>
      <tr>页码：${page.pageNum}每页：${page.pageSize}条 ，总页数${page.pages}</tr>
 </table> 
+测试枚举常量便利
+<table>
+    <tr>
+        <td>code</td><td>name</td>
+    </tr>
+     <c:forEach items="${carConstant}" var="item">
+    <tr>
+        <td>${item.code}</td><td>${item.name}</td>
+    </tr>
+   
+    </c:forEach>
+     <tr>页码：${page.pageNum}每页：${page.pageSize}条 ，总页数${page.pages}</tr>
+</table> 
 </body>
 </html>

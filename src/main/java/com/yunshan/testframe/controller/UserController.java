@@ -11,6 +11,7 @@ import com.yunshan.testframe.base.BaseController;
 import com.yunshan.testframe.beans.User;
 import com.yunshan.testframe.interceptor.PageInterceptor;
 import com.yunshan.testframe.service.UserService;
+import com.yunshan.testframe.util.KeyConstant;
 
 /**
  * @author <a href="http://www.wanglay.com">Lei Wang</a>
@@ -31,6 +32,7 @@ public class UserController extends BaseController {
 		System.out.println("分页 ");
 		PageInterceptor.Page page = userService.selectList(pageNum, pageSize);
 		request.setAttribute("page", page);
+		request.setAttribute("carConstant", KeyConstant.CarAlarmConstant.values());
 		return "index";
 	}
 	@ResponseBody  
