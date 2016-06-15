@@ -1,4 +1,4 @@
-package com.yunshan.testframe.util;
+package com.yunshan.testframe;
 
 /**
  * @Title: KeyConstant.java

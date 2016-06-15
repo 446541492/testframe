@@ -2,6 +2,10 @@ package com.yunshan.testframe.util;
 
 import javax.servlet.http.HttpSession;
 
+import org.apache.log4j.chainsaw.Main;
+
+import com.yunshan.testframe.KeyConstant;
+
 /** 
  * @Title: WebUtil.java 
  * @Package com.yunshan.testframe.util 
@@ -27,6 +31,9 @@ public class WebUtil
 		}else{
 			return null;
 		}
+	}
+	public static void main(String[] args)
+	{
 	}
 }
 

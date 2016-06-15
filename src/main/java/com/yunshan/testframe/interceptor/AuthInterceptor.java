@@ -14,10 +14,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.yunshan.testframe.KeyConstant;
 import com.yunshan.testframe.Listener.SysAuthListener;
 import com.yunshan.testframe.base.BaseController;
 import com.yunshan.testframe.beans.Authuser;
-import com.yunshan.testframe.util.KeyConstant;
 import com.yunshan.testframe.util.StringUtil;
 import com.yunshan.testframe.util.WebUtil;
 
@@ -70,16 +70,15 @@ public class AuthInterceptor implements HandlerInterceptor
 			HttpSession session = ((HttpServletRequest) request).getSession();
 			
 			//模拟登录状态，测试代码，请删除
-			Authuser loginUser = new Authuser();
-			loginUser.setId(1);
-			loginUser.setIsAdmin(0);
-			loginUser.setUserName("王磊");
-			List<String> userAuthList = new ArrayList<String>();
-			userAuthList.add("/test");
-			loginUser.setAuthList(userAuthList);
-			WebUtil.setSessionUser(session, loginUser);
+//			Authuser loginUser = new Authuser();
+//			loginUser.setId(1);
+//			loginUser.setIsAdmin(0);
+//			loginUser.setUserName("王磊");
+//			List<String> userAuthList = new ArrayList<String>();
+//			userAuthList.add("/test");
+//			loginUser.setAuthList(userAuthList);
+//			WebUtil.setSessionUser(session, loginUser);
 			//结束，测试通过后删除
-			
 			
 			if (session == null || WebUtil.getSessionUser(session) == null)
 			{
@@ -87,6 +86,7 @@ public class AuthInterceptor implements HandlerInterceptor
 				return false;
 			} else
 			{
+				Authuser loginUser = (Authuser) WebUtil.getSessionUser(session);
 				if(loginUser.getAuthList().contains(requestPath)){
 					return true;
 				}else{

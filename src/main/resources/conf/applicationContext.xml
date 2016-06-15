@@ -9,8 +9,13 @@
      http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-3.0.xsd
      http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
      http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
-	<!-- service层单独扫描 servlet-context.xml与service-context.xml不是同时加载，如果不进行这样的设置，那么，spring就会将所有带@Service注解的类都扫描到容器中，等到加载service-context.xml的时候，会因为容器已经存在Service类，使得cglib将不对Service进行代理，直接导致的结果就是在service-context中的事务配置不起作用，发生异常时，无法对数据进行回滚。 -->
-	<context:component-scan base-package="com.yunshan.testframe.service" />
+	
+	<!--扫描所有，controller交给springmvc子容器处理，这里获得的service是有事务增强处理的 -->
+	<context:component-scan base-package="com.yunshan.testframe">
+	<context:exclude-filter type="annotation"
+			expression="org.springframework.stereotype.Controller" />
+	</context:component-scan>
+	
 	<bean id="propertyConfigurer"
 		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
 		<property name="locations">

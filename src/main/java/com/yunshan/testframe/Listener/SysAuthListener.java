@@ -9,6 +9,7 @@ import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
 
+import com.yunshan.testframe.CommonConfig;
 import com.yunshan.testframe.dao.AuthDao;
 
 /**
@@ -39,6 +40,7 @@ public class SysAuthListener implements
 	public void onApplicationEvent(ContextRefreshedEvent arg0) {
 		authList = authDao.sysAuthList();
 		logger.info("系统权限数据读取成功========="+authList.toString());
+		logger.info("系统配置文件读取成功========="+CommonConfig.jsCssVersion);
 	}
 
 }

@@ -8,11 +8,8 @@
        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
        http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
-	<!-- 启用注解，并定义组件查找规则 ，排除service层-->
-	<context:component-scan base-package="com.yunshan.testframe"
-		>
-		<context:exclude-filter type ="annotation" expression= "org.springframework.stereotype.Service" />
-	</context:component-scan>
+	<!-- 启用注解，只扫描controller ，排除service层，因为org.springframework.web.servlet.DispatcherServlet这对应的是子容器，他管理的service没有事务处理能力 -->
+<context:component-scan base-package="com.yunshan.testframe.controller"/>
 
 	<!-- 定义注解驱动Controller方法处理适配器 ,注：该适配器必须声明在<mvc:annotation-driven />之前，否则不能正常处理参数类型的转换 -->
 	<bean
@@ -29,17 +26,17 @@
 	<!-- 会自动注册RequestMappingHandlerMapping与RequestMappingHandlerAdapter 两个bean,是spring 
 		MVC为@Controllers分发请求所必须的。 并提供了：数据绑定支持，@NumberFormatannotation支持，@DateTimeFormat支持，@Valid支持，读写XML的支持（JAXB），读写JSON的支持（Jackson） -->
 	<mvc:annotation-driven />
-<!-- 拦截器 -->
-<mvc:interceptors>  
-    <!-- 使用bean定义一个Interceptor，直接定义在mvc:interceptors根下面的Interceptor将拦截所有的请求 -->  
-    <mvc:interceptor>  
-        <mvc:mapping path="/*"/>  
-        <!-- 定义在mvc:interceptor下面的表示是对特定的请求才进行拦截的 -->  
-        <bean class="com.yunshan.testframe.interceptor.AuthInterceptor">
-        	<property name="excludedRequests" value="/index" />
-        </bean>  
-    </mvc:interceptor>  
-</mvc:interceptors>  
+	<!-- 拦截器 -->
+<!-- 	<mvc:interceptors>
+	使用bean定义一个Interceptor，直接定义在mvc:interceptors根下面的Interceptor将拦截所有的请求	
+		<mvc:interceptor>
+			<mvc:mapping path="/*" />
+			定义在mvc:interceptor下面的表示是对特定的请求才进行拦截的	
+			<bean class="com.yunshan.testframe.interceptor.AuthInterceptor">
+				<property name="excludedRequests" value="/index" />
+			</bean>
+		</mvc:interceptor>
+	</mvc:interceptors> -->
 
 	<!-- start视图配置 -->
 	<bean id="defaultViewResolver"

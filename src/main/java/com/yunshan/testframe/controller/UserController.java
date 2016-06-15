@@ -7,11 +7,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.yunshan.testframe.KeyConstant;
 import com.yunshan.testframe.base.BaseController;
 import com.yunshan.testframe.beans.User;
 import com.yunshan.testframe.interceptor.PageInterceptor;
 import com.yunshan.testframe.service.UserService;
-import com.yunshan.testframe.util.KeyConstant;
 
 /**
  * @author <a href="http://www.wanglay.com">Lei Wang</a>
