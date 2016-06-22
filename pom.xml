@@ -1,11 +1,11 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>com.yunshan.testframe</groupId>
-	<artifactId>testframe</artifactId>
+	<groupId>com.yunshan.testframe-mygithub</groupId>
+	<artifactId>testframe-mygithub</artifactId>
 	<packaging>war</packaging>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>testframe</name>
+	<name>testframe-mygithub</name>
 	<url>http://maven.apache.org</url>
 	<properties>
 		<maven.build.timestamp.format>yyyyMMddHHmmss</maven.build.timestamp.format>
@@ -36,8 +36,12 @@
 		<cache-version>0.4</cache-version>
 		<jetty-version>6.1.26</jetty-version>
 		<gson-version>2.3.1</gson-version>
+		<fastjson-version>1.2.7</fastjson-version>
 		<freemarker-version>2.3.22</freemarker-version>
 		<commons-io-version>2.4</commons-io-version>
+		<codec-version>1.10</codec-version>
+		<poi-ooxml-version>3.13</poi-ooxml-version>
+
 		<jsoup-version>1.7.3</jsoup-version>
 		<mail-version>1.4.7</mail-version>
 		<commom-io-version>2.4</commom-io-version>
@@ -157,14 +161,14 @@
 			<version>${mybatis-spring-version}</version>
 		</dependency>
 
-		
+
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 			<version>${sqljdbc4-version}</version>
 		</dependency>
-		
-		<!--  logging -->
+
+		<!-- logging -->
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
@@ -185,6 +189,11 @@
 			<groupId>com.google.code.gson</groupId>
 			<artifactId>gson</artifactId>
 			<version>${gson-version}</version>
+		</dependency>
+			<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>fastjson</artifactId>
+			<version>${fastjson-version}</version>
 		</dependency>
 		<!-- 模板支持 -->
 		<dependency>
@@ -233,9 +242,20 @@
 			<artifactId>commons-fileupload</artifactId>
 			<version>${commom-fileup-version}</version>
 		</dependency>
+		<dependency>
+			<groupId>commons-codec</groupId>
+			<artifactId>commons-codec</artifactId>
+			<version>${codec-version}</version>
+		</dependency>
+		<!-- word，excel操作工具包 -->
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi-ooxml</artifactId>
+			<version>${poi-ooxml-version}</version>
+		</dependency>
 	</dependencies>
 	<build>
-		<finalName>com-yunshan-testframe</finalName>
+		<finalName>com-yunshan-testframe-mygithub</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -276,7 +296,7 @@
 				<version>${maven-surefire-plugin.version}</version>
 				<configuration>
 					<!-- 是否跳过测试用例 -->
-					<skipTests>false</skipTests>
+					<skipTests>true</skipTests>
 				</configuration>
 			</plugin>
 

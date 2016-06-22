@@ -1,5 +1,7 @@
 package com.yunshan.testframe.controller;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,7 +26,7 @@ public class UserController extends BaseController {
 	UserService userService;
 
 	@RequestMapping(value="index", method = RequestMethod.GET)
-	public String index( @RequestParam(value="pageNum", required=true, defaultValue="1") int pageNum,@RequestParam(value="pageSize", required=true, defaultValue="3") int pageSize) {
+	public String index(HttpServletRequest request, @RequestParam(value="pageNum", required=true, defaultValue="1") int pageNum,@RequestParam(value="pageSize", required=true, defaultValue="3") int pageSize) {
 		
 	
 		String name = userService.select(1).getName();

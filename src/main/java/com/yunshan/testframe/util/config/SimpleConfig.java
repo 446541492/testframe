@@ -1,5 +1,6 @@
 package com.yunshan.testframe.util.config;
 
+
 import java.util.HashMap;
 
 public class SimpleConfig {
